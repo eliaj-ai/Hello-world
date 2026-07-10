@@ -1,0 +1,60 @@
+<!--
+  The preview image shown when a link to this site is shared in a chat app
+  or on social media. Drawn as SVG so it stays sharp and weighs very little.
+
+  Note: a few platforms prefer PNG or JPG for preview images. If sharing
+  previews matter, export this at 1200x630 and point the og:image tag at
+  the exported file.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#080b14"/>
+      <stop offset="1" stop-color="#141c33"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="80" y1="80" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4f7cff"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="80" y1="300" x2="900" y2="380" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7c9cff"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.25" cy="0.1" r="0.8">
+      <stop stop-color="#4f7cff" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#4f7cff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <rect x="80" y="80" width="86" height="86" rx="24" fill="url(#mark)"/>
+  <path d="M107 137c4.3 3.5 9.2 5.4 14.6 5.4 7.8 0 12.4-3.5 12.4-8.6 0-11.9-25.4-6.2-25.4-21.9 0-7 6.2-11.6 15.4-11.6 5.1 0 9.7 1.4 13.5 4"
+        fill="none" stroke="#fff" stroke-width="5.7" stroke-linecap="round"/>
+
+  <text x="196" y="139" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif"
+        font-size="34" font-weight="600" fill="#e9edf7">SaaS AI Solutions</text>
+
+  <text x="80" y="300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif"
+        font-size="66" font-weight="700" fill="#e9edf7">Powering the next generation</text>
+  <text x="80" y="380" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif"
+        font-size="66" font-weight="700" fill="url(#accent)">of digital businesses.</text>
+
+  <text x="80" y="452" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif"
+        font-size="27" fill="#97a3bd">Specialised web applications, delivered as SaaS products.</text>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif" font-size="22" fill="#97a3bd">
+    <rect x="80"  y="510" width="182" height="52" rx="26" fill="none" stroke="#2a3552"/>
+    <text x="171" y="543" text-anchor="middle">Via Ciao</text>
+
+    <rect x="278" y="510" width="196" height="52" rx="26" fill="none" stroke="#2a3552"/>
+    <text x="376" y="543" text-anchor="middle">Hotel App</text>
+
+    <rect x="490" y="510" width="182" height="52" rx="26" fill="none" stroke="#2a3552"/>
+    <text x="581" y="543" text-anchor="middle">Scan Fox</text>
+
+    <rect x="688" y="510" width="244" height="52" rx="26" fill="none" stroke="#2a3552"/>
+    <text x="810" y="543" text-anchor="middle">LocalGuide4me</text>
+  </g>
+</svg>

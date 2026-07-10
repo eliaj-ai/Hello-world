@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found | {{ company_name }}{% endblock %}
+
+{% block head_extra %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container narrow center">
+    <p class="error-code">404</p>
+    <h1 class="page-title">We couldn't find that page</h1>
+    <p class="page-lead">
+      The address may be mistyped, or the page may have moved.
+    </p>
+    <div class="hero-actions center">
+      <a class="btn btn-primary" href="{{ url_for('main.home') }}">Back to home</a>
+      <a class="btn btn-ghost" href="{{ url_for('products.index') }}">See our products</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

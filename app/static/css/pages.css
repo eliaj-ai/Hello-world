@@ -1,0 +1,425 @@
+/* =====================================================================
+   pages.css - layouts belonging to specific pages: the hero, section
+   rhythm, the product pages, the contact page and the error pages.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   Section rhythm
+--------------------------------------------------------------------- */
+.section        { padding-block: var(--space-9); }
+.section-tight  { padding-block: var(--space-8); }
+
+.section-alt {
+  position: relative;
+  background:
+    radial-gradient(900px 400px at 15% 0%,   rgba(139, 92, 246, 0.10), transparent 62%),
+    radial-gradient(900px 400px at 88% 100%, rgba(45, 212, 191, 0.09), transparent 62%),
+    rgba(15, 21, 35, 0.55);
+  border-block: 1px solid var(--border);
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: var(--space-7);
+}
+
+.section-title { margin-bottom: var(--space-3); }
+.section-title.center { text-align: center; margin-inline: auto; }
+.section-text { color: var(--text-muted); font-size: 1.02rem; }
+
+/* ---------------------------------------------------------------------
+   Homepage hero
+--------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  padding-block: clamp(var(--space-8), 11vw, 8.5rem) var(--space-9);
+  overflow: hidden;
+}
+
+/* A soft coloured glow behind the headline. Purely decorative, so it is
+   hidden from screen readers in the HTML. */
+.hero-glow {
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1250px, 140%);
+  height: 680px;
+  /* Several overlapping colour blooms rather than a single blue one, so
+     the top of the page has real colour. */
+  background:
+    radial-gradient(circle at 28% 46%, rgba(79, 124, 255, 0.28), transparent 58%),
+    radial-gradient(circle at 62% 32%, rgba(139, 92, 246, 0.24), transparent 58%),
+    radial-gradient(circle at 78% 62%, rgba(244, 114, 182, 0.17), transparent 58%),
+    radial-gradient(circle at 14% 72%, rgba(45, 212, 191, 0.15), transparent 58%);
+  filter: blur(44px);
+  pointer-events: none;
+}
+
+.hero-inner { position: relative; max-width: 880px; }
+
+.hero-title { margin-bottom: var(--space-5); }
+
+.hero-text {
+  font-size: clamp(1.02rem, 1.9vw, 1.2rem);
+  color: var(--text-muted);
+  max-width: 62ch;
+  margin-bottom: var(--space-6);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-7);
+}
+
+.hero-points {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.hero-points li { display: flex; align-items: center; gap: var(--space-3); }
+
+/* Each hero tick gets its own colour rather than three identical greens. */
+.hero-points li:nth-child(1) .icon { color: var(--accent-teal); }
+.hero-points li:nth-child(2) .icon { color: var(--accent-sky); }
+.hero-points li:nth-child(3) .icon { color: var(--accent-violet); }
+
+@media (min-width: 900px) {
+  .hero-points { flex-direction: row; flex-wrap: wrap; gap: var(--space-5); }
+}
+
+@media (max-width: 640px) {
+  .hide-mobile { display: none; }
+}
+
+/* ---------------------------------------------------------------------
+   Inner page hero
+--------------------------------------------------------------------- */
+.page-hero {
+  padding-block: var(--space-8) var(--space-6);
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(700px 300px at 12% 0%, rgba(79, 124, 255, 0.14), transparent 65%),
+    radial-gradient(700px 300px at 88% 0%, rgba(139, 92, 246, 0.12), transparent 65%),
+    radial-gradient(600px 260px at 55% 110%, rgba(244, 114, 182, 0.08), transparent 65%);
+}
+
+.page-title { margin-bottom: var(--space-4); }
+
+.page-lead {
+  font-size: 1.06rem;
+  color: var(--text-muted);
+  max-width: 65ch;
+}
+
+.prose-lead {
+  color: var(--text-muted);
+  font-size: 1.02rem;
+  margin-bottom: var(--space-6);
+}
+
+.narrow .section-title { margin-top: var(--space-6); }
+
+/* ---------------------------------------------------------------------
+   How-it-works steps
+--------------------------------------------------------------------- */
+.steps {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+  counter-reset: none;
+}
+
+@media (min-width: 700px)  { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1050px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+
+.step {
+  position: relative;
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  overflow: hidden;
+  background:
+    radial-gradient(360px 160px at 20% -20%, var(--step-soft, transparent), transparent 70%),
+    linear-gradient(180deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.step:hover { border-color: var(--step-border, var(--border-strong)); transform: translateY(-3px); }
+
+.step h3 { margin-bottom: var(--space-2); }
+.step p { color: var(--text-muted); font-size: 0.92rem; }
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: var(--step-grad, var(--grad-brand));
+  color: #06101f;
+  font-weight: 750;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 18px var(--step-soft, rgba(79, 124, 255, 0.3));
+}
+
+/* The four steps run through a colour sequence, so progress through the
+   process is visible at a glance. */
+.step:nth-child(1) {
+  --step-grad: var(--grad-brand);  --step-soft: rgba(79, 124, 255, 0.18);
+  --step-border: rgba(79, 124, 255, 0.4);
+}
+
+.step:nth-child(2) {
+  --step-grad: var(--grad-berry);  --step-soft: rgba(167, 139, 250, 0.18);
+  --step-border: rgba(167, 139, 250, 0.4);
+}
+
+.step:nth-child(3) {
+  --step-grad: var(--grad-gold);   --step-soft: rgba(251, 191, 36, 0.18);
+  --step-border: rgba(251, 191, 36, 0.4);
+}
+
+.step:nth-child(4) {
+  --step-grad: var(--grad-forest); --step-soft: rgba(52, 211, 153, 0.18);
+  --step-border: rgba(52, 211, 153, 0.4);
+}
+
+/* Steps 1-3 use light gradients, so dark number text reads best; the
+   brand gradient in step 1 is dark, so its number stays white. */
+.step:nth-child(1) .step-number { color: #fff; }
+.step:nth-child(2) .step-number { color: #fff; }
+
+/* ---------------------------------------------------------------------
+   Call-to-action panel
+--------------------------------------------------------------------- */
+.cta-panel {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: clamp(var(--space-6), 6vw, var(--space-8));
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(620px 280px at 18% -25%, rgba(79, 124, 255, 0.22), transparent 68%),
+    radial-gradient(620px 280px at 82% -20%, rgba(244, 114, 182, 0.18), transparent 68%),
+    radial-gradient(700px 320px at 50% 130%, rgba(45, 212, 191, 0.16), transparent 68%),
+    linear-gradient(180deg, var(--surface-2), var(--surface));
+}
+
+/* Colour band across the top edge of the panel. */
+.cta-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--grad-rainbow);
+}
+
+.cta-panel h2 { margin-bottom: var(--space-3); }
+
+.cta-panel p {
+  color: var(--text-muted);
+  max-width: 55ch;
+  margin: 0 auto var(--space-6);
+}
+
+/* ---------------------------------------------------------------------
+   Product detail page
+--------------------------------------------------------------------- */
+.product-hero {
+  background: linear-gradient(180deg, var(--accent-soft, var(--brand-soft)), transparent);
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.breadcrumb a { color: var(--text-muted); }
+.breadcrumb a:hover { color: var(--brand-light); }
+
+.product-hero-head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.product-hero-head .badge { margin-bottom: var(--space-3); }
+
+@media (max-width: 640px) {
+  .product-hero-head { flex-direction: column; gap: var(--space-4); }
+}
+
+.product-audience-line {
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--accent, var(--brand));
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-muted);
+  margin-bottom: var(--space-6);
+}
+
+.problem-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background:
+    radial-gradient(340px 150px at 15% -20%, var(--accent-soft, transparent), transparent 70%),
+    linear-gradient(180deg, var(--surface-2), var(--surface));
+}
+
+.problem-card p { color: var(--text-muted); font-size: 0.945rem; }
+
+.problem-index {
+  font-size: 1.9rem;
+  font-weight: 750;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent, var(--brand-light)), var(--brand-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* --- Confirmed vs proposed panels --------------------------------- */
+.status-card { display: flex; flex-direction: column; gap: var(--space-3); }
+
+.status-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 1.2rem;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-confirmed { border-color: rgba(52, 211, 153, 0.3); }
+.status-confirmed .status-dot { background: var(--success); box-shadow: 0 0 12px var(--success); }
+
+.status-proposed { border-color: rgba(251, 191, 36, 0.3); }
+.status-proposed .status-dot { background: var(--warning); box-shadow: 0 0 12px var(--warning); }
+
+.status-note { font-size: 0.875rem; color: var(--text-dim); }
+
+/* ---------------------------------------------------------------------
+   About page placeholders
+--------------------------------------------------------------------- */
+.notice-card {
+  border-style: dashed;
+  border-color: var(--border-strong);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.notice-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 1.1rem;
+  margin-bottom: var(--space-3);
+  color: var(--text);
+}
+
+.notice-card p { color: var(--text-muted); font-size: 0.945rem; }
+
+.placeholder-list {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.placeholder-list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px dashed var(--border);
+  font-size: 0.92rem;
+}
+
+.placeholder-list dt { font-weight: 600; }
+.placeholder-list dd { color: var(--text-dim); }
+
+/* ---------------------------------------------------------------------
+   Contact page
+--------------------------------------------------------------------- */
+.contact-layout {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 960px) {
+  .contact-layout { grid-template-columns: 1.5fr 1fr; }
+}
+
+.contact-form-card { padding: clamp(var(--space-5), 4vw, var(--space-7)); }
+
+.contact-aside { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.aside-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 1.05rem;
+  margin-bottom: var(--space-4);
+}
+
+.aside-title .icon { color: var(--brand-light); }
+
+/* ---------------------------------------------------------------------
+   Success and error pages
+--------------------------------------------------------------------- */
+.success-card { text-align: center; padding: var(--space-8) var(--space-5); }
+
+.success-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  margin-bottom: var(--space-5);
+  border-radius: 50%;
+  background: rgba(52, 211, 153, 0.13);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  color: var(--success);
+}
+
+.success-card .page-lead { margin-inline: auto; margin-bottom: var(--space-6); }
+
+.error-code {
+  font-size: clamp(4rem, 14vw, 7rem);
+  font-weight: 750;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: var(--space-3);
+  background: linear-gradient(120deg,
+              var(--accent-sky), var(--brand-2) 35%,
+              var(--accent-pink) 65%, var(--accent-orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.error-code + .page-title { margin-bottom: var(--space-4); }
+.center .page-lead { margin-inline: auto; margin-bottom: var(--space-6); }

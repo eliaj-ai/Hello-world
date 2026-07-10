@@ -1,0 +1,56 @@
+<footer class="site-footer">
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <p class="footer-logo">
+          <span class="brand-name"><strong>SaaS AI</strong> Solutions</span>
+          <span class="brand-caption">sell &amp; buy</span>
+        </p>
+        <p class="footer-tagline">
+          Specialised web applications, built and delivered as SaaS products.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h2 class="footer-heading">Products</h2>
+        <ul class="footer-list">
+          {% for product in nav_products %}
+            <li>
+              <a href="{{ url_for('products.detail', slug=product.slug) }}">{{ product.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2 class="footer-heading">Company</h2>
+        <ul class="footer-list">
+          <li><a href="{{ url_for('main.about') }}">About</a></li>
+          <li><a href="{{ url_for('products.index') }}">All products</a></li>
+          <li><a href="{{ url_for('contact.contact') }}">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2 class="footer-heading">Get in touch</h2>
+        <p class="footer-note">
+          Questions about a product, or a project of your own?
+        </p>
+        <a class="btn btn-outline btn-sm" href="{{ url_for('contact.contact') }}">Contact us</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ current_year }} {{ company_name }}. All rights reserved.</p>
+      {# Company registration details are intentionally left out until they
+         are supplied - inventing them would be dishonest. #}
+      <p class="footer-meta">
+        Company details, address and legal information: <em>to be added</em>.
+      </p>
+    </div>
+
+  </div>
+</footer>

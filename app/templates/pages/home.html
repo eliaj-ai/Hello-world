@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+{% from "partials/icons.html" import icon %}
+{% from "partials/product_card.html" import product_card %}
+
+{% block content %}
+
+{# ============================ HERO ============================ #}
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container hero-inner">
+
+    <p class="eyebrow">Software as a service</p>
+
+    <h1 class="hero-title">
+      Powering the next generation of<br class="hide-mobile">
+      <span class="text-gradient">digital businesses.</span>
+    </h1>
+
+    <p class="hero-text">
+      {{ company_name }} builds specialised web applications that solve real
+      problems for businesses and their customers - delivered as SaaS, so
+      there is nothing to install and nothing to maintain.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-lg" href="{{ url_for('products.index') }}">
+        Explore our products
+      </a>
+      <a class="btn btn-ghost btn-lg" href="{{ url_for('contact.contact') }}">
+        Contact us {{ icon("arrow-right", 18) }}
+      </a>
+    </div>
+
+    <ul class="hero-points">
+      <li>{{ icon("check", 16) }} Built for a specific industry, not adapted from a generic tool</li>
+      <li>{{ icon("check", 16) }} Runs in the browser - nothing for your team to install</li>
+      <li>{{ icon("check", 16) }} Improved continuously after launch</li>
+    </ul>
+
+  </div>
+</section>
+
+{# ========================== PRODUCTS ========================== #}
+<section class="section" id="products">
+  <div class="container">
+
+    <header class="section-head">
+      <p class="eyebrow">Our products</p>
+      <h2 class="section-title">Four products, four clear audiences</h2>
+      <p class="section-text">
+        Each product is aimed at a specific group and built around what that
+        group actually needs.
+      </p>
+    </header>
+
+    <div class="grid grid-4">
+      {% for product in products %}
+        {{ product_card(product) }}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{# ============================ WHY US ========================== #}
+<section class="section section-alt">
+  <div class="container">
+
+    <header class="section-head">
+      <p class="eyebrow">Why {{ company_name }}</p>
+      <h2 class="section-title">How we work, and why it matters</h2>
+      <p class="section-text">
+        Our approach, described plainly. No inflated numbers - just what we
+        do and how we do it.
+      </p>
+    </header>
+
+    <div class="grid grid-3">
+
+      <article class="card feature-card tone-blue">
+        <span class="feature-icon">{{ icon("target", 22) }}</span>
+        <h3>Specialised, not generic</h3>
+        <p>
+          Every product targets one clear audience - travel agencies, hotels,
+          travellers - so the software matches how those people actually work.
+        </p>
+      </article>
+
+      <article class="card feature-card tone-violet">
+        <span class="feature-icon">{{ icon("layers", 22) }}</span>
+        <h3>Built to scale</h3>
+        <p>
+          Applications are structured so they can grow: from a first version
+          to a larger user base, without rebuilding from scratch.
+        </p>
+      </article>
+
+      <article class="card feature-card tone-emerald">
+        <span class="feature-icon">{{ icon("shield", 22) }}</span>
+        <h3>Security taken seriously</h3>
+        <p>
+          Protection against common web attacks, secure sessions, validated
+          input and configuration kept out of the source code.
+        </p>
+      </article>
+
+      <article class="card feature-card tone-teal">
+        <span class="feature-icon">{{ icon("sliders", 22) }}</span>
+        <h3>Simple to use</h3>
+        <p>
+          Interfaces are kept clear and uncluttered, so staff can use them
+          without a long training period.
+        </p>
+      </article>
+
+      <article class="card feature-card tone-amber">
+        <span class="feature-icon">{{ icon("zap", 22) }}</span>
+        <h3>Automation where it helps</h3>
+        <p>
+          Repetitive manual work is a good candidate for software. We look
+          for those tasks first.
+        </p>
+      </article>
+
+      <article class="card feature-card tone-rose">
+        <span class="feature-icon">{{ icon("refresh", 22) }}</span>
+        <h3>Continuous improvement</h3>
+        <p>
+          A launch is a starting point. Products keep developing based on how
+          they are really used.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+{# ========================= HOW IT WORKS ======================= #}
+<section class="section">
+  <div class="container">
+
+    <header class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2 class="section-title">From problem to working product</h2>
+    </header>
+
+    <ol class="steps">
+
+      <li class="step">
+        <span class="step-number">1</span>
+        <div>
+          <h3>Identify the problem</h3>
+          <p>Understand the business or customer need before writing any code.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <span class="step-number">2</span>
+        <div>
+          <h3>Build the solution</h3>
+          <p>Develop a specialised web application aimed squarely at that need.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <span class="step-number">3</span>
+        <div>
+          <h3>Launch</h3>
+          <p>Deploy it as a SaaS product, available through the browser.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <span class="step-number">4</span>
+        <div>
+          <h3>Improve</h3>
+          <p>Keep refining the product based on real usage and real feedback.</p>
+        </div>
+      </li>
+
+    </ol>
+
+  </div>
+</section>
+
+{# ============================= CTA ============================ #}
+<section class="section">
+  <div class="container">
+    <div class="cta-panel">
+      <h2>Have a problem worth solving?</h2>
+      <p>
+        Tell us about your business, your hotel, your agency, or the product
+        idea you have in mind. We will tell you honestly whether we can help.
+      </p>
+      <a class="btn btn-primary btn-lg" href="{{ url_for('contact.contact') }}">
+        Start the conversation
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

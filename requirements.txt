@@ -1,0 +1,17 @@
+# Core web framework
+Flask==3.0.3
+
+# Database layer (SQLite locally, PostgreSQL-ready for production)
+Flask-SQLAlchemy==3.1.1
+SQLAlchemy==2.0.30
+
+# Forms, validation and CSRF protection
+Flask-WTF==1.2.1
+WTForms==3.1.2
+email-validator==2.1.1
+
+# Loads configuration from a .env file so secrets never live in source code
+python-dotenv==1.0.1
+
+# Testing
+pytest==8.2.0

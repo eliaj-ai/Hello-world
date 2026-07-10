@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% from "partials/icons.html" import icon %}
+
+{% block head_extra %}
+  {# This page should never appear in search results. #}
+  <meta name="robots" content="noindex">
+{% endblock %}
+
+{% block content %}
+
+<section class="section">
+  <div class="container narrow">
+    <div class="card success-card">
+
+      <span class="success-icon" aria-hidden="true">{{ icon("check", 34) }}</span>
+
+      <h1 class="page-title">Thank you - your message has been received</h1>
+
+      <p class="page-lead">
+        Your enquiry has been saved and we will read it. If you left an email
+        address, that is where our reply will go.
+      </p>
+
+      <div class="hero-actions center">
+        <a class="btn btn-primary" href="{{ url_for('main.home') }}">Back to home</a>
+        <a class="btn btn-ghost" href="{{ url_for('products.index') }}">Browse products</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

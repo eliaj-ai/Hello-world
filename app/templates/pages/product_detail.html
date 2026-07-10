@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% from "partials/icons.html" import icon %}
+{% from "partials/product_card.html" import product_card %}
+
+{% block content %}
+
+<section class="page-hero product-hero accent-{{ product.accent }}">
+  <div class="container">
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ url_for('main.home') }}">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="{{ url_for('products.index') }}">Products</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ product.name }}</span>
+    </nav>
+
+    <div class="product-hero-head">
+      <span class="product-icon product-icon-lg" aria-hidden="true">{{ icon(product.icon, 34) }}</span>
+      <div>
+        <span class="badge">{{ product.status }}</span>
+        <h1 class="page-title">{{ product.name }}</h1>
+        <p class="page-lead">{{ product.tagline }}</p>
+      </div>
+    </div>
+
+    <p class="product-audience-line">
+      <strong>Built for:</strong> {{ product.audience }}
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ url_for('contact.contact') }}">{{ product.cta_label }}</a>
+      <a class="btn btn-ghost" href="{{ url_for('products.index') }}">All products</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="container narrow">
+    <h2 class="section-title">What {{ product.name }} is</h2>
+    <p class="prose-lead">{{ product.intro }}</p>
+  </div>
+</section>
+
+{# The accent class carries the product's own colour into this section, so
+   the whole page stays visually tied to that product. #}
+<section class="section section-alt accent-{{ product.accent }}">
+  <div class="container">
+
+    <header class="section-head">
+      <p class="eyebrow">The problem</p>
+      <h2 class="section-title">Why this product exists</h2>
+    </header>
+
+    <div class="grid grid-3">
+      {% for problem in product.problems %}
+        <article class="card problem-card">
+          <span class="problem-index" aria-hidden="true">{{ "%02d"|format(loop.index) }}</span>
+          <p>{{ problem }}</p>
+        </article>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="split">
+
+      {# --- Confirmed: only things the company has actually stated. --- #}
+      <div class="card status-card status-confirmed">
+        <h2 class="status-title">
+          <span class="status-dot" aria-hidden="true"></span>
+          Confirmed
+        </h2>
+        <p class="status-note">What {{ product.name }} is defined to do today.</p>
+        <ul class="check-list">
+          {% for item in product.confirmed %}
+            <li>{{ icon("check", 16) }}<span>{{ item }}</span></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      {# --- Proposed: clearly separated so nothing reads as a promise. --- #}
+      <div class="card status-card status-proposed">
+        <h2 class="status-title">
+          <span class="status-dot" aria-hidden="true"></span>
+          Proposed - not built yet
+        </h2>
+        <p class="status-note">
+          Ideas under consideration. These are <strong>not</strong> available
+          and are not a commitment.
+        </p>
+        <ul class="check-list check-list-muted">
+          {% for item in product.proposed %}
+            <li>{{ icon("puzzle", 16) }}<span>{{ item }}</span></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+
+    <header class="section-head">
+      <p class="eyebrow">Benefits</p>
+      <h2 class="section-title">Why choose {{ product.name }}</h2>
+    </header>
+
+    {# Benefit cards cycle through the colour tones so the row is not
+       three identical blue boxes. #}
+    {% set tones = ["tone-sky", "tone-violet", "tone-emerald", "tone-amber", "tone-rose", "tone-teal"] %}
+    <div class="grid grid-3">
+      {% for reason in product.why_choose %}
+        <article class="card feature-card {{ tones[loop.index0 % tones|length] }}">
+          <span class="feature-icon">{{ icon("check", 20) }}</span>
+          <p>{{ reason }}</p>
+        </article>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta-panel">
+      <h2>Interested in {{ product.name }}?</h2>
+      <p>
+        Tell us about your business and what you need. We will explain
+        honestly what {{ product.name }} can and cannot do today.
+      </p>
+      <a class="btn btn-primary btn-lg" href="{{ url_for('contact.contact') }}">
+        {{ product.cta_label }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="container">
+    <h2 class="section-title center">Other products</h2>
+    <div class="grid grid-3">
+      {% for other in other_products %}
+        {{ product_card(other, compact=true) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

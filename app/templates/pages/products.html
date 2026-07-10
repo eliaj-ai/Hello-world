@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% from "partials/product_card.html" import product_card %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Products</p>
+    <h1 class="page-title">SaaS products built for specific industries</h1>
+    <p class="page-lead">
+      Four web applications, each aimed at a clearly defined audience. Every
+      product page separates what is confirmed from what is still proposed,
+      so you always know where a product stands.
+    </p>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="container">
+    <div class="grid grid-2 grid-wide">
+      {% for product in products %}
+        {{ product_card(product) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta-panel">
+      <h2>Not sure which product fits?</h2>
+      <p>Describe your situation and we will point you to the right one - or tell you if none of them fit yet.</p>
+      <a class="btn btn-primary btn-lg" href="{{ url_for('contact.contact') }}">Ask us</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
