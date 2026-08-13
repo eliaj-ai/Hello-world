@@ -1,0 +1,60 @@
+{# ---------------------------------------------------------------------
+   Inline SVG icons.
+
+   These are drawn directly in the page rather than loaded from an icon
+   library. That means no extra download, no third-party dependency, and the
+   icons inherit the surrounding text colour automatically.
+
+   Usage:  {% from "partials/icons.html" import icon %}
+           {{ icon("compass") }}
+--------------------------------------------------------------------- #}
+
+{% macro icon(name, size=24) -%}
+<svg class="icon" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true" focusable="false">
+  {%- if name == "compass" -%}
+    <circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.2 5-5 2.2 2.2-5z"/>
+  {%- elif name == "building" -%}
+    <path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16"/><path d="M14 9h5a1 1 0 0 1 1 1v11"/>
+    <path d="M2 21h20"/><path d="M7 8h3M7 12h3M7 16h3M17 13h1M17 17h1"/>
+  {%- elif name == "radar" -%}
+    <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/>
+    <path d="M12 12 19 6"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/>
+  {%- elif name == "map-pin" -%}
+    <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/>
+  {%- elif name == "target" -%}
+    <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/>
+  {%- elif name == "layers" -%}
+    <path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/>
+  {%- elif name == "rocket" -%}
+    <path d="M5 15c-1 2-1 5-1 5s3 0 5-1"/>
+    <path d="M9 15 6.5 12.5C6 12 6 11 6.5 10.2 9 6 13 3.5 18.5 3.5c0 5.5-2.5 9.5-6.7 12-.8.5-1.8.5-2.3 0z"/>
+    <circle cx="14.5" cy="9.5" r="1.6"/>
+  {%- elif name == "refresh" -%}
+    <path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v4h-4"/>
+  {%- elif name == "shield" -%}
+    <path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6l-7-3z"/><path d="m9 12 2 2 4-4"/>
+  {%- elif name == "zap" -%}
+    <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>
+  {%- elif name == "puzzle" -%}
+    <path d="M9 4h3a1.5 1.5 0 0 1 0 3h3v3a1.5 1.5 0 0 0 3 0v3h-3v3a1.5 1.5 0 0 1-3 0H9v-3a1.5 1.5 0 0 0-3 0H4V9h2a1.5 1.5 0 0 0 0-3H4V4z"/>
+  {%- elif name == "sliders" -%}
+    <path d="M5 21V14M5 10V3M12 21v-9M12 8V3M19 21v-5M19 12V3"/>
+    <path d="M2.5 14h5M9.5 12h5M16.5 16h5"/>
+  {%- elif name == "check" -%}
+    <path d="m5 13 4 4L19 7"/>
+  {%- elif name == "arrow-right" -%}
+    <path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>
+  {%- elif name == "mail" -%}
+    <rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/>
+  {%- elif name == "flask" -%}
+    <path d="M10 3h4M11 3v6L5.5 18A2 2 0 0 0 7.2 21h9.6a2 2 0 0 0 1.7-3L13 9V3"/>
+    <path d="M8.2 14h7.6"/>
+  {%- elif name == "menu" -%}
+    <path d="M4 7h16M4 12h16M4 17h16"/>
+  {%- elif name == "close" -%}
+    <path d="M6 6 18 18M18 6 6 18"/>
+  {%- endif -%}
+</svg>
+{%- endmacro %}

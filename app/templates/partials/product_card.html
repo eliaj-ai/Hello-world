@@ -1,0 +1,32 @@
+{# ---------------------------------------------------------------------
+   One product card. Used on the homepage, the products page, and in the
+   "other products" strip - written once, reused three times.
+
+   Usage: {% from "partials/product_card.html" import product_card %}
+          {{ product_card(product) }}
+--------------------------------------------------------------------- #}
+{% from "partials/icons.html" import icon %}
+
+{% macro product_card(product, compact=false) -%}
+<article class="card product-card accent-{{ product.accent }}{% if compact %} product-card-compact{% endif %}">
+
+  <div class="product-card-top">
+    <span class="product-icon" aria-hidden="true">{{ icon(product.icon, 26) }}</span>
+    <span class="badge">{{ product.status }}</span>
+  </div>
+
+  <h3 class="product-card-title">
+    <a class="stretched-link" href="{{ url_for('products.detail', slug=product.slug) }}">
+      {{ product.name }}
+    </a>
+  </h3>
+
+  <p class="product-card-audience">{{ product.audience }}</p>
+  <p class="product-card-text">{{ product.card_summary }}</p>
+
+  <span class="product-card-link" aria-hidden="true">
+    Learn more {{ icon("arrow-right", 16) }}
+  </span>
+
+</article>
+{%- endmacro %}

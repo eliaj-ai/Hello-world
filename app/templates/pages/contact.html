@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% from "partials/icons.html" import icon %}
+
+{# A small macro so every field is rendered the same way: label, input,
+   and the error messages the server sent back. #}
+{% macro field(f, extra_class="") -%}
+<div class="form-field {{ extra_class }}{% if f.errors %} has-error{% endif %}">
+  {{ f.label(class="form-label") }}
+  {{ f(class="form-input" ~ (" is-invalid" if f.errors else ""),
+       **{"aria-invalid": "true" if f.errors else "false",
+          "aria-describedby": f.id ~ "-error" if f.errors else ""}) }}
+  {% if f.errors %}
+    <p class="form-error" id="{{ f.id }}-error" role="alert">
+      {{ f.errors[0] }}
+    </p>
+  {% endif %}
+</div>
+{%- endmacro %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Contact</p>
+    <h1 class="page-title">Let's talk about what you need</h1>
+    <p class="page-lead">
+      Whether you run a travel agency, a hotel, or have a product idea of your
+      own - send us a message and we will get back to you.
+    </p>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="container">
+    <div class="contact-layout">
+
+      {# ---------------------------- FORM ---------------------------- #}
+      <div class="card contact-form-card">
+
+        {% if form.errors %}
+          <div class="alert alert-error" role="alert">
+            <strong>Please check the form.</strong>
+            There {{ 'is 1 field' if form.errors|length == 1 else 'are ' ~ form.errors|length ~ ' fields' }}
+            that need attention.
+          </div>
+        {% endif %}
+
+        {# novalidate turns off the browser's own popups so our styled
+           messages are shown instead. The server still validates everything. #}
+        <form method="POST" action="{{ url_for('contact.contact') }}"
+              novalidate data-validate>
+
+          {# The CSRF token proves this form came from our own site. Without
+             it the server rejects the submission. #}
+          {{ form.hidden_tag() }}
+
+          <div class="form-row">
+            {{ field(form.name) }}
+            {{ field(form.email) }}
+          </div>
+
+          {{ field(form.company) }}
+          {{ field(form.subject) }}
+          {{ field(form.message) }}
+
+          {# The honeypot. Hidden from people, visible to spam bots. #}
+          <div class="form-honeypot" aria-hidden="true">
+            {{ form.website.label }}
+            {{ form.website() }}
+          </div>
+
+          <p class="form-note">
+            We use your details only to reply to this enquiry.
+          </p>
+
+          {{ form.submit(class="btn btn-primary btn-lg btn-block") }}
+
+        </form>
+      </div>
+
+      {# --------------------------- SIDEBAR -------------------------- #}
+      <aside class="contact-aside">
+
+        <div class="card">
+          <h2 class="aside-title">{{ icon("mail", 20) }} What happens next</h2>
+          <ul class="check-list">
+            <li>{{ icon("check", 16) }}<span>Your message is stored securely.</span></li>
+            <li>{{ icon("check", 16) }}<span>We read every enquiry ourselves.</span></li>
+            <li>{{ icon("check", 16) }}<span>You get an honest answer about what we can do.</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2 class="aside-title">Ask about a product</h2>
+          <ul class="footer-list">
+            {% for product in nav_products %}
+              <li>
+                <a href="{{ url_for('products.detail', slug=product.slug) }}">
+                  {{ product.name }} - {{ product.audience }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="card notice-card">
+          <h2 class="notice-title">Direct contact details</h2>
+          <p>
+            A public email address and phone number will be published here
+            once they are confirmed. <em>To be added.</em>
+          </p>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

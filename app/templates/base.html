@@ -1,0 +1,57 @@
+{# ---------------------------------------------------------------------
+   The base layout every page extends.
+
+   Jinja templates work by inheritance: this file holds the shell (head,
+   navigation, footer) and each page fills in the `content` block. That way
+   the header exists in exactly one place.
+--------------------------------------------------------------------- #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {# --- Search engine metadata --- #}
+  <title>{% block title %}{{ title or company_name }}{% endblock %}</title>
+  <meta name="description" content="{{ meta_description or 'SaaS AI Solutions builds specialised web applications delivered as SaaS products.' }}">
+  <link rel="canonical" href="{{ site_url.rstrip('/') }}{{ request.path }}">
+  <meta name="theme-color" content="#0b1220">
+
+  {# --- Open Graph: the preview card shown when the link is shared --- #}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ company_name }}">
+  <meta property="og:title" content="{{ title or company_name }}">
+  <meta property="og:description" content="{{ meta_description or 'Specialised web applications, delivered as SaaS products.' }}">
+  <meta property="og:url" content="{{ site_url.rstrip('/') }}{{ request.path }}">
+  <meta property="og:image" content="{{ site_url.rstrip('/') }}{{ url_for('static', filename='images/og-image.svg') }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title or company_name }}">
+  <meta name="twitter:description" content="{{ meta_description or 'Specialised web applications, delivered as SaaS products.' }}">
+
+  {# --- Icons --- #}
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.svg') }}" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/favicon.svg') }}">
+
+  {# --- Styles. Split into three files so each has a clear job. --- #}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
+
+  {% block head_extra %}{% endblock %}
+</head>
+<body>
+  {# Lets keyboard users jump straight past the navigation. #}
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  {% include "partials/nav.html" %}
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "partials/footer.html" %}
+
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

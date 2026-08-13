@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% from "partials/icons.html" import icon %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">About</p>
+    <h1 class="page-title">We build software companies can actually use</h1>
+    <p class="page-lead">
+      {{ company_name }} develops specialised web applications and sells them
+      as SaaS products. Each one starts from a real problem in a real
+      industry.
+    </p>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="container narrow">
+
+    <h2 class="section-title">What we do</h2>
+    <p class="prose-lead">
+      Rather than building one general-purpose tool, we build separate
+      applications for separate audiences: travel agencies, hotels,
+      travellers looking for cheap flights, and travellers looking for a
+      local guide. Each product can then be shaped around how that group
+      really works, instead of asking everyone to adapt to the same software.
+    </p>
+
+    <h2 class="section-title">Our business model</h2>
+    <p class="prose-lead">
+      We make money by selling web applications as SaaS products. Customers
+      use the software through their browser; we handle hosting, updates and
+      ongoing development. That keeps the cost of specialised software within
+      reach of businesses that could never commission it themselves.
+    </p>
+
+    <h2 class="section-title">How we approach a product</h2>
+    <ol class="numbered-list">
+      <li><strong>Understand first.</strong> Identify the actual problem before proposing software.</li>
+      <li><strong>Build deliberately.</strong> A focused application, structured so it can grow.</li>
+      <li><strong>Launch.</strong> Deploy it as a SaaS product people can start using.</li>
+      <li><strong>Keep improving.</strong> Refine it based on how it gets used in practice.</li>
+    </ol>
+
+  </div>
+</section>
+
+{# --------------------------------------------------------------------
+   Company facts are deliberately left as placeholders. Inventing a
+   founding year, a team size or a customer count would be dishonest, and
+   investors check these things.
+-------------------------------------------------------------------- #}
+<section class="section section-alt">
+  <div class="container narrow">
+
+    <div class="card notice-card">
+      <h2 class="notice-title">{{ icon("flask", 20) }} Company information - to be completed</h2>
+      <p>
+        The details below are placeholders. They will be filled in with real
+        information rather than estimated, so nothing on this site is invented.
+      </p>
+      <dl class="placeholder-list">
+        <div><dt>Founded</dt><dd><em>To be added</em></dd></div>
+        <div><dt>Headquarters</dt><dd><em>To be added</em></dd></div>
+        <div><dt>Team</dt><dd><em>To be added</em></dd></div>
+        <div><dt>Legal entity</dt><dd><em>To be added</em></dd></div>
+        <div><dt>Contact address</dt><dd><em>To be added</em></dd></div>
+      </dl>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta-panel">
+      <h2>Want to know more?</h2>
+      <p>We are happy to answer questions from customers, partners and investors.</p>
+      <a class="btn btn-primary btn-lg" href="{{ url_for('contact.contact') }}">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
